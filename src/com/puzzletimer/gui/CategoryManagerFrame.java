@@ -47,11 +47,11 @@ interface CategoryEditorListener {
 @SuppressWarnings("serial")
 class CategoryEditorDialog extends JDialog {
     private JTextField textFieldDescription;
-    private JComboBox comboBoxPuzzle;
-    private JComboBox comboBoxScrambler;
-    private JComboBox comboBoxTips;
+    private JComboBox<PuzzleInfo> comboBoxPuzzle;
+    private JComboBox<ScramblerInfo> comboBoxScrambler;
+    private JComboBox<Tip> comboBoxTips;
     private JButton buttonAdd;
-    private JList listTips;
+    private JList<Tip> listTips;
     private JButton buttonUp;
     private JButton buttonDown;
     private JButton buttonRemove;
@@ -107,7 +107,7 @@ class CategoryEditorDialog extends JDialog {
                 }
 
                 // selected tips
-                DefaultListModel listModel = (DefaultListModel) CategoryEditorDialog.this.listTips.getModel();
+                DefaultListModel<Tip> listModel = (DefaultListModel<Tip>) CategoryEditorDialog.this.listTips.getModel();
                 listModel.removeAllElements();
                 for (String categoryTipId : category.getTipIds()) {
                     for (Tip tip : tips) {
@@ -129,7 +129,7 @@ class CategoryEditorDialog extends JDialog {
                     return;
                 }
 
-                DefaultListModel listModel = (DefaultListModel) CategoryEditorDialog.this.listTips.getModel();
+                DefaultListModel<Tip> listModel = (DefaultListModel<Tip>) CategoryEditorDialog.this.listTips.getModel();
                 if (!listModel.contains(selectedTip)) {
                     listModel.addElement(selectedTip);
                 }
@@ -140,14 +140,14 @@ class CategoryEditorDialog extends JDialog {
         this.buttonUp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                JList listTips = CategoryEditorDialog.this.listTips;
+                JList<Tip> listTips = CategoryEditorDialog.this.listTips;
 
-                DefaultListModel model = (DefaultListModel) listTips.getModel();
+                DefaultListModel<Tip> model = (DefaultListModel<Tip>) listTips.getModel();
 
                 int selectedIndex = listTips.getSelectedIndex();
                 if (selectedIndex > 0) {
                     // swap
-                    Object selectedValue = model.getElementAt(selectedIndex);
+                    Tip selectedValue = model.getElementAt(selectedIndex);
                     model.insertElementAt(selectedValue, selectedIndex - 1);
                     model.removeElementAt(selectedIndex + 1);
 
@@ -161,14 +161,14 @@ class CategoryEditorDialog extends JDialog {
         this.buttonDown.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                JList listTips = CategoryEditorDialog.this.listTips;
+                JList<Tip> listTips = CategoryEditorDialog.this.listTips;
 
-                DefaultListModel model = (DefaultListModel) listTips.getModel();
+                DefaultListModel<Tip> model = (DefaultListModel<Tip>) listTips.getModel();
 
                 int selectedIndex = listTips.getSelectedIndex();
                 if (selectedIndex >= 0 && selectedIndex < model.getSize() - 1) {
                     // swap
-                    Object selectedValue = model.getElementAt(selectedIndex);
+                    Tip selectedValue = model.getElementAt(selectedIndex);
                     model.insertElementAt(selectedValue, selectedIndex + 2);
                     model.removeElementAt(selectedIndex);
 
@@ -182,7 +182,7 @@ class CategoryEditorDialog extends JDialog {
         this.buttonRemove.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                DefaultListModel model = (DefaultListModel) CategoryEditorDialog.this.listTips.getModel();
+                DefaultListModel<Tip> model = (DefaultListModel<Tip>) CategoryEditorDialog.this.listTips.getModel();
 
                 int selectedIndex = CategoryEditorDialog.this.listTips.getSelectedIndex();
                 if (selectedIndex >= 0) {
@@ -208,7 +208,7 @@ class CategoryEditorDialog extends JDialog {
                     CategoryEditorDialog.this.textFieldDescription.getText();
 
                 // tip ids
-                ListModel listModel = CategoryEditorDialog.this.listTips.getModel();
+                ListModel<Tip> listModel = CategoryEditorDialog.this.listTips.getModel();
 
                 String[] tipIds = new String[listModel.getSize()];
                 for (int i = 0; i < tipIds.length; i++) {
@@ -288,19 +288,19 @@ class CategoryEditorDialog extends JDialog {
         add(new JLabel(t("category_editor.puzzle")));
 
         // comboBoxPuzzle
-        this.comboBoxPuzzle = new JComboBox();
+        this.comboBoxPuzzle = new JComboBox<>();
         add(this.comboBoxPuzzle, "span 2, wrap");
 
         add(new JLabel(t("category_editor.scrambler")));
 
         // comboBoxScrambler
-        this.comboBoxScrambler = new JComboBox();
+        this.comboBoxScrambler = new JComboBox<>();
         add(this.comboBoxScrambler, "span 2, wrap");
 
         add(new JLabel(t("category_editor.tips")));
 
         // comboBoxTips
-        this.comboBoxTips = new JComboBox();
+        this.comboBoxTips = new JComboBox<>();
         add(this.comboBoxTips);
 
         // buttonAdd
@@ -308,7 +308,7 @@ class CategoryEditorDialog extends JDialog {
         add(this.buttonAdd, "sizegroup button, wrap");
 
         // listTips
-        this.listTips = new JList(new DefaultListModel());
+        this.listTips = new JList<Tip>(new DefaultListModel<Tip>());
         this.listTips.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane scrollPane = new JScrollPane(this.listTips);
         add(scrollPane, "grow, skip");

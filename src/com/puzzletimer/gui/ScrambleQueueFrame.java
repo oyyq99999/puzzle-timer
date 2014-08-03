@@ -51,7 +51,7 @@ public class ScrambleQueueFrame extends JFrame {
     private JButton buttonRemove;
     private JButton buttonImportFromFile;
     private JButton buttonExport;
-    private JComboBox comboBoxScrambler;
+    private JComboBox<Scrambler> comboBoxScrambler;
     private JSpinner spinnerNumberOfScrambles;
     private JButton buttonImportFromScrambler;
     private JButton buttonOk;
@@ -330,7 +330,7 @@ public class ScrambleQueueFrame extends JFrame {
         add(new JLabel(t("scramble_queue.import_from_scrambler")), "span, wrap");
 
         // comboBoxScrambler
-        this.comboBoxScrambler = new JComboBox();
+        this.comboBoxScrambler = new JComboBox<Scrambler>();
         add(this.comboBoxScrambler, "growx, span, split 3");
 
         // spinnerNumberOfScrambles

@@ -36,7 +36,7 @@ import com.puzzletimer.state.ColorManager;
 
 @SuppressWarnings("serial")
 public class ColorSchemeFrame extends JFrame {
-    private JComboBox comboBoxPuzzle;
+    private JComboBox<Puzzle> comboBoxPuzzle;
     private Panel3D panel3D;
     private JTable table;
     private JButton buttonEdit;
@@ -173,7 +173,7 @@ public class ColorSchemeFrame extends JFrame {
         add(new JLabel(t("color_scheme.puzzle")), "growx, span, wrap");
 
         // comboBoxPuzzle
-        this.comboBoxPuzzle = new JComboBox();
+        this.comboBoxPuzzle = new JComboBox<>();
         add(this.comboBoxPuzzle, "growx, span, wrap");
 
         // panel3D

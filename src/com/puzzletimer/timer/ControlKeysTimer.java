@@ -66,6 +66,8 @@ public class ControlKeysTimer implements Timer {
                     this.state = State.READY_FOR_INSPECTION;
                 }
                 break;
+            default:
+                break;
         }
     }
 
@@ -122,6 +124,8 @@ public class ControlKeysTimer implements Timer {
                             ControlKeysTimer.this.state = State.FINISHED;
                         }
                         break;
+                    default:
+                        break;
                 }
             }
 
@@ -169,6 +173,8 @@ public class ControlKeysTimer implements Timer {
                             ControlKeysTimer.this.state = ControlKeysTimer.this.inspectionEnabled ?
                                 State.READY_FOR_INSPECTION : State.NOT_READY;
                         }
+                        break;
+                    default:
                         break;
                 }
             }

@@ -35,7 +35,7 @@ public class SolutionEditingDialog extends JDialog {
 
     private JTextField textFieldStart;
     private JTextField textFieldTime;
-    private JComboBox comboBoxPenalty;
+    private JComboBox<String> comboBoxPenalty;
     private JTextField textFieldScramble;
     private JButton buttonOk;
     private JButton buttonCancel;
@@ -158,7 +158,7 @@ public class SolutionEditingDialog extends JDialog {
         add(new JLabel(t("solution_editing.penalty")));
 
         // comboBoxPenalty
-        this.comboBoxPenalty = new JComboBox();
+        this.comboBoxPenalty = new JComboBox<String>();
         add(this.comboBoxPenalty);
 
         // labelScramble

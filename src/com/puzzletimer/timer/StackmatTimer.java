@@ -231,6 +231,8 @@ public class StackmatTimer implements StackmatTimerReaderListener, Timer {
                     this.state = State.RESET_FOR_INSPECTION;
                 }
                 break;
+            default:
+                break;
         }
     }
 
@@ -256,6 +258,8 @@ public class StackmatTimer implements StackmatTimerReaderListener, Timer {
                     case RUNNING:
                         StackmatTimer.this.timerManager.updateSolutionTiming(
                             new Timing(StackmatTimer.this.start, new Date()));
+                        break;
+                    default:
                         break;
                 }
             }

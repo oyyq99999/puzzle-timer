@@ -89,20 +89,24 @@ public class SolutionUtils {
             scanner.useDelimiter(":");
 
             if (!scanner.hasNextLong()) {
+                scanner.close();
                 return 0;
             }
 
             long minutes = scanner.nextLong();
             if (minutes < 0) {
+                scanner.close();
                 return 0;
             }
 
             if (!scanner.hasNextDouble()) {
+                scanner.close();
                 return 0;
             }
 
             double seconds = scanner.nextDouble();
             if (seconds < 0.0 || seconds >= 60.0) {
+                scanner.close();
                 return 0;
             }
 
@@ -112,17 +116,20 @@ public class SolutionUtils {
         // 00.00
         else {
             if (!scanner.hasNextDouble()) {
+                scanner.close();
                 return 0;
             }
 
             double seconds = scanner.nextDouble();
             if (seconds < 0.0) {
+                scanner.close();
                 return 0;
             }
 
             time = (long) (1000 * seconds);
         }
 
+        scanner.close();
         return 10 * ((time + 5) / 10);
     }
 

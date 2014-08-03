@@ -61,6 +61,8 @@ public class SpaceKeyTimer implements Timer {
                     this.state = State.READY_FOR_INSPECTION;
                 }
                 break;
+            default:
+                break;
         }
     }
 
@@ -86,6 +88,8 @@ public class SpaceKeyTimer implements Timer {
                             new Timing(SpaceKeyTimer.this.start, SpaceKeyTimer.this.finish));
 
                         SpaceKeyTimer.this.state = State.FINISHED;
+                        break;
+                    default:
                         break;
                 }
 
@@ -133,6 +137,8 @@ public class SpaceKeyTimer implements Timer {
                     case FINISHED:
                         SpaceKeyTimer.this.state = SpaceKeyTimer.this.inspectionEnabled ?
                             State.READY_FOR_INSPECTION : State.READY;
+                        break;
+                    default:
                         break;
                 }
 
